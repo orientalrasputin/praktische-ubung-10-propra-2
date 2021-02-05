@@ -7,14 +7,22 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import jdk.jfr.DataAmount;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import projektor.stereotypes.AggregateRoot;
 
 @AggregateRoot
+@NoArgsConstructor
+@Data
 public class Projekt {
 
-  private final Long id;
+  @Id
+  private  Long id;
 
-  private final String name;
+  private  String name;
   private ProjektBeschreibung beschreibung;
 
   private Zeitraum zeitraum;

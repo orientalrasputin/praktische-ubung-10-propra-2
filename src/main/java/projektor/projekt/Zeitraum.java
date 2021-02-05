@@ -1,11 +1,16 @@
 package projektor.projekt;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
+@NoArgsConstructor
+@Data
 class Zeitraum {
 
-  private final LocalDate von;
-  private final LocalDate bis;
+  private  LocalDate von;
+  private  LocalDate bis;
 
   public Zeitraum(LocalDate von, LocalDate bis) {
     this.von = von;

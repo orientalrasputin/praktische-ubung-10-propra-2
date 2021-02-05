@@ -1,6 +1,7 @@
 package projektor.projekt;
 
 class ProjektBeschreibung {
+
   private String beschreibung;
 
   public ProjektBeschreibung(String beschreibung) {

@@ -1,10 +1,17 @@
 package projektor.projekt;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+
 import java.util.List;
 
+@NoArgsConstructor
+@Data
 class Person {
 
-  private final String name;
+  @Id
+  private String name;
 
   public Person(String name) {
     this.name = name;

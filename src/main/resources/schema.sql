@@ -1,3 +1,9 @@
+
+DROP TABLE IF EXISTS projekt_beschreibung;
+DROP TABLE IF EXISTS zeitraum;
+DROP TABLE IF EXISTS person;
+DROP TABLE IF EXISTS projekt;
+
 CREATE TABLE IF NOT EXISTS projekt (
   id integer primary key,
   name varchar(255)

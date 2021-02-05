@@ -15,9 +15,6 @@ import projektor.projekt.Repository;
 public class ProjektController {
 
   @Autowired
-  ProjektRepository repo;
-
-  @Autowired
   Repository repo2;
 
   @GetMapping("/")
@@ -28,7 +25,7 @@ public class ProjektController {
     else if(startzeitpunkt!=null && endzeitpunkt != null) {
       LocalDate von = LocalDate.parse(startzeitpunkt);
       LocalDate bis = LocalDate.parse(endzeitpunkt);
-      model.addAttribute("projekte", repo2.allZeit(von, bis));
+      //model.addAttribute("projekte", repo2.findByZeitraum_vonGreaterThanAndZeitraum_bisLessThan(von, bis));
     }
     else
     model.addAttribute("projekte", repo2.findAll());
@@ -37,28 +34,28 @@ public class ProjektController {
 
   @GetMapping("/details/{id}")
   public String details(Model model, @PathVariable long id) {
-    Projekt blub = repo.blub(id);
-    model.addAttribute("projekt", blub);
+    Projekt projekt = repo2.findById(id).get();
+    model.addAttribute("projekt", projekt);
     return "details";
   }
 
   @PostMapping("/edit/{id}")
   public String edit(@PathVariable long id, String beschreibung,
                      String startzeitpunkt, String endzeitpunkt) {
-    Projekt blub = repo.blub(id);
-    blub.setBeschreibung(beschreibung);
+    Projekt projekt = repo2.findById(id).get();
+    projekt.setBeschreibung(beschreibung);
     LocalDate von = LocalDate.parse(startzeitpunkt);
     LocalDate bis = LocalDate.parse(endzeitpunkt);
-    blub.setZeitraum(von, bis);
-    repo.plonk(blub);
+    projekt.setZeitraum(von, bis);
+    repo2.save(projekt);
     return "redirect:/";
   }
 
   @PostMapping("/addperson/{id}")
   public String addPerson(@PathVariable long id, String person) {
-    Projekt blub = repo.blub(id);
-    blub.addPerson(person);
-    repo.plonk(blub);
+    Projekt projekt = repo2.findById(id).get();
+    projekt.addPerson(person);
+    repo2.save(projekt);
     return "redirect:/";
   }
 
