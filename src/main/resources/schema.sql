@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS projekt (
   id integer primary key,
-  name varchar
+  name varchar(255)
 );
 
 CREATE TABLE IF NOT EXISTS projekt_beschreibung (
     projekt integer primary key references projekt(id),
-    beschreibung varchar
+    beschreibung varchar(255)
 );
 
 CREATE TABLE IF NOT EXISTS zeitraum (
@@ -14,4 +14,9 @@ CREATE TABLE IF NOT EXISTS zeitraum (
     bis date
 );
 
+CREATE TABLE IF NOT EXISTS person (
+    id serial primary key,
+    projekt integer references projekt(id),
+    name varchar(255)
+);
 
